@@ -4,7 +4,6 @@ A template repo for how I setup my WoW Addons for development.
 ## TODOs for this template
 - Can you generate Changelogs?
 - Can we automate any/all of these steps with a CLI w/ prompts?
-- Figure out how Cursebreaker works with GH Releases, add that to CI
 
 ## Steps to use this template
 
