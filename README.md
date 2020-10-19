@@ -10,6 +10,7 @@ A template repo for how I setup my WoW Addons for development.
 
 1. Update all the values in `AddonName.toc` to be correct, deleting saved variables lines if unnecessary
 1. Rename `AddonName.toc` to have your exact AddonName
+1. Update environment variables in `.github/workflows/release.yml` so that builds will work
 1. Tag the repo as `wow-addon` so it's more discoverable.
 1. Update the rest of the readme
 1. Delete everything through here and including this in the Readme.
