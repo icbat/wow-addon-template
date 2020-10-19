@@ -1,12 +1,18 @@
 name: Release new version of addon
 
+# When setting up the repo for the first time, search this file for `secrets` and ensure those are added to GitHub's secrets!
+
 env:
   # Must match the name of your TOC file for WoW to load this addon at all
   ADDON_NAME: 
   # The list of what you want to ship in your ZIP file, minus the TOC which is required
   ADDON_BUNDLE_FILES: core.lua localization.lua LICENSE README.md
   # The ID number for WoW Interface to be able to upload
-  WOWI_ID: 
+  WOWI_ID: 12345
+  # The ID of your project on CurseForge
+  CURSE_ID: 123456
+  # These cannot be parsed from the TOC, they must be manually set.
+  CURSE_GAME_VERSIONS: 9.0.1
 
 on:
   workflow_dispatch:
@@ -47,3 +53,14 @@ jobs:
         compatible: ${{ steps.get_versions.outputs.supported_version }}
         version: ${{ steps.get_versions.outputs.addon_version }}
         apiKey: ${{ secrets.WOW_INTERFACE }}
+
+    - name: Upload to CurseForge
+      uses: itsmeow/curseforge-upload@v2
+      with:
+        token: ${{ secrets.CURSEFORGE }}
+        project_id: ${{ env.CURSE_ID }}
+        game_endpoint: wow
+        file_path: Broker_CTA.zip
+        changelog: See ISSUELINK for latest changes
+        game_versions: ${{ env.CURSE_GAME_VERSIONS }}
+        release_type: release
